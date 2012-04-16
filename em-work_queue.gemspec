@@ -4,9 +4,9 @@ require File.expand_path('../lib/em-work_queue/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Terry Finn"]
   gem.email         = ["terry@terryrfinn.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
-  gem.homepage      = ""
+  gem.description   = %q{Makes working with EventMachine's queue more convenient.  It adds start/stop/status methods, and keeps the queue and queue logic packed together.}
+  gem.summary       = %q{Makes working with EventMachine's queue more convenient.}
+  gem.homepage      = "https://github.com/terryfinn/em-work_queue"
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
