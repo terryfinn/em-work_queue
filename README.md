@@ -23,7 +23,36 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+require 'rubygems'
+require 'em-work_queue'
+include EM::WorkQueue
+
+EM.run do
+  # Create WorkQueue instance
+  wq = WorkQueue.new do |i|
+    # do work...
+    puts i
+  end
+  
+  # starts processing queue
+  wq.start
+  
+  # push work onto queue
+  wq.push 'a'
+  wq.push 'b'
+  wq.push 'c'
+  
+  # stop processing queue
+  wq.stop
+  
+  # will not be processed until start is called again
+  wq.push 'd'
+  
+  # true or false
+  wq.running?
+end
+```
 
 ## Contributing
 
