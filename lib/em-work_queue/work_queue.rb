@@ -7,13 +7,6 @@ module EventMachine
         @queue = EM::Queue.new
         @status = false
         @block = block
-
-        @queue_worker = Proc.new do |i|
-          if running?
-            @block.call i
-            @queue.pop &@queue_worker
-          end
-        end
       end
 
       def push(val)
@@ -23,9 +16,20 @@ module EventMachine
       def running?
         @status
       end
+      
+      def jog(n = 1)
+        n.times { @queue.pop &@block }
+      end
 
       def start
         @status = true
+        @queue_worker = Proc.new do |i|
+          if running?
+            @block.call i
+            @queue.pop &@queue_worker if running?
+          end
+        end
+        
         @queue.pop &@queue_worker
       end
 
